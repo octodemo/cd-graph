@@ -1,0 +1,87 @@
+name: multi-ring
+ 
+on: workflow_dispatch
+ 
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "..."
+
+  lint:
+    runs-on: ubuntu-latest
+    needs: [build]
+    steps:
+      - run: echo "..."
+
+  test-A:
+    runs-on: ubuntu-latest
+    needs: [lint]
+    steps:
+      - run: echo "..."
+    
+  test-B:
+    runs-on: ubuntu-latest
+    needs: [lint]
+    steps:
+      - run: echo "..."
+ 
+  test-C:
+    runs-on: ubuntu-latest
+    needs: [lint]
+    steps:
+      - run: echo "..."
+ 
+  ring0-p1:
+    runs-on: ubuntu-latest
+    needs: [test-A,test-B,test-C]
+    steps:
+      - run: echo "..."
+
+  ring0-p2:
+    runs-on: ubuntu-latest
+    needs: [test-A,test-B,test-C]
+    steps:
+      - run: echo "..."
+
+  ring1-p1:
+    runs-on: ubuntu-latest
+    needs: [ring0-p1,ring0-p2]
+    steps:
+      - run: echo "..."
+
+  ring1-p2:
+    runs-on: ubuntu-latest
+    needs: [ring0-p1,ring0-p2]
+    steps:
+      - run: echo "..."
+
+  ring2-p1:
+    runs-on: ubuntu-latest
+    needs: [ring1-p1,ring1-p2]
+    steps:
+      - run: echo "..."
+
+  ring2-p2:
+    runs-on: ubuntu-latest
+    needs: [ring1-p1,ring1-p2]
+    steps:
+      - run: echo "..."
+
+  security-test:
+    runs-on: ubuntu-latest
+    needs: [ring2-p1,ring2-p2]
+    steps:
+      - run: echo "..."
+ 
+  ring3-p1:
+    runs-on: ubuntu-latest
+    needs: [security-test]
+    steps:
+      - run: echo "..."
+
+  ring4-p2:
+    runs-on: ubuntu-latest
+    needs: [security-test]
+    steps:
+      - run: echo "..."
