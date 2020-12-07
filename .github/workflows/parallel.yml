@@ -1,0 +1,19 @@
+name: parallel
+ 
+on: workflow_dispatch
+ 
+jobs:
+  build:
+   runs-on: ubuntu-latest
+   steps:
+     - run: echo "..."
+  
+  test:
+   runs-on: ubuntu-latest
+   steps:
+     - run: echo "..."
+  
+  deploy:
+   runs-on: ubuntu-latest
+   steps:
+     - run: echo "..."
