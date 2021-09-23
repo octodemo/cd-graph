@@ -23,7 +23,7 @@ jobs:
     steps:
      - run: echo "..."
   
-  security-check-1:
+  security-scan-windows:
    runs-on: ubuntu-latest
    needs: [lint,checks]
    strategy:
@@ -34,11 +34,11 @@ jobs:
   
   quality-check:
    runs-on: ubuntu-latest
-   needs: [security-check-1]
+   needs: [security-scan-windows]
    steps:
      - run: echo "..."
   
-  test-B:
+  security-scan-mac:
    runs-on: ubuntu-latest
    needs: [lint,checks]
    strategy:
@@ -47,7 +47,7 @@ jobs:
    steps:
      - run: echo "..." 
   
-  test-C:
+  security-scan-os:
    runs-on: ubuntu-latest
    needs: [lint,checks]
    strategy:
@@ -58,7 +58,7 @@ jobs:
   
   staging:
    runs-on: ubuntu-latest
-   needs: [quality-check,test-B,test-C]
+   needs: [quality-check,security-scan-mac,security-scan-os]
    steps:
      - run: echo "..."
   
